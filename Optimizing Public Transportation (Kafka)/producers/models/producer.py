@@ -5,7 +5,7 @@ import time
 
 from confluent_kafka import avro
 from confluent_kafka.admin import AdminClient, NewTopic
-from confluent_kafka.avro import AvroProducer
+from confluent_kafka.avro import AvroProducer,CachedSchemaRegistryClient
 
 logger = logging.getLogger(__name__)
 
@@ -38,9 +38,7 @@ class Producer:
         #
         #
         self.broker_properties = {
-            # TODO
-            # TODO
-            # TODO
+            "bootstrap.server":"PLAINTEXT://localhost:9092"
         }
 
         # If the topic does not already exist, try to create it
@@ -49,8 +47,10 @@ class Producer:
             Producer.existing_topics.add(self.topic_name)
 
         # TODO: Configure the AvroProducer
-        # self.producer = AvroProducer(
-        # )
+        self.producer = AvroProducer(
+            config= self.broker_properties,
+            schema_registry= CachedSchemaRegistryClient({"url": "http://localhost:8081"})
+         )
 
     def create_topic(self):
         """Creates the producer topic if it does not already exist"""
@@ -60,6 +60,14 @@ class Producer:
         # the Kafka Broker.
         #
         #
+        features = self.create_topics(
+            [
+                NewTopic(
+                    topic=
+                )
+            ]
+        )
+
         logger.info("topic creation kafka integration incomplete - skipping")
 
     def time_millis(self):
