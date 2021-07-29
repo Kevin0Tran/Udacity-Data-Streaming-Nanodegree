@@ -63,7 +63,9 @@ class Producer:
         features = self.create_topics(
             [
                 NewTopic(
-                    topic=
+                    topic=self.topic_name,
+                    num_partitions=self.num_partitions,
+                    replication_factor=self.num_replicas,
                 )
             ]
         )
