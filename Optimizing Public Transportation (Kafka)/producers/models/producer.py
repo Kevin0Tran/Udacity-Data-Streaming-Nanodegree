@@ -69,6 +69,13 @@ class Producer:
                 )
             ]
         )
+        for topic, features in features.items():
+            try:
+                features.result()
+                print("topic created")
+            except Exception as e:
+                print(f"failed to create topic {topic}: {e}")
+                raise
 
         logger.info("topic creation kafka integration incomplete - skipping")
 
@@ -82,6 +89,7 @@ class Producer:
         # TODO: Write cleanup code for the Producer here
         #
         #
+        self.producer.flush()
         logger.info("producer close incomplete - skipping")
 
     def time_millis(self):
