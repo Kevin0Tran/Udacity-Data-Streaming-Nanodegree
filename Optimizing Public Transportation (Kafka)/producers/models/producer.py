@@ -74,9 +74,9 @@ class Producer:
                 )
             ]
         )
-        for topic, features in features.items():
+        for topic, feature in features.items():
             try:
-                features.result()
+                feature.result()
                 print("topic created")
             except Exception as e:
                 print(f"failed to create topic {topic}: {e}")
