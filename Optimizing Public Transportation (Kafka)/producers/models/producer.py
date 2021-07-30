@@ -63,7 +63,7 @@ class Producer:
         # the Kafka Broker.
         #
         #
-        client =  AdminClient({"bootstrap.servers": "PLAINTEXT://localhost:9092"})
+        client =  AdminClient({"bootstrap.servers": BROKER_URL})
 
         features = client.create_topics(
             [
@@ -77,7 +77,7 @@ class Producer:
         for topic, feature in features.items():
             try:
                 feature.result()
-                print("topic created")
+                print(f"{topic} topic created")
             except Exception as e:
                 print(f"failed to create topic {topic}: {e}")
                 logger.info("topic creation kafka integration incomplete - skipping")
