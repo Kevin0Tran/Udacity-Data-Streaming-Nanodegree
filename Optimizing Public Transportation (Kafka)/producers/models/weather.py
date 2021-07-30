@@ -86,7 +86,7 @@ class Weather(Producer):
            # TODO: What URL should be POSTed to?
            #
            #
-           f"{Weather.rest_proxy_url}/topic/{Producer.topic_name}",
+           f"{Weather.rest_proxy_url}/topic/{self.topic_name}",
            #
            #
            # TODO: What Headers need to bet set?
@@ -99,7 +99,7 @@ class Weather(Producer):
                    "value_schema":json.dumps(Weather.value_schema),
                    "records":[
                        {"key":{
-                           "timestamp".self.time_mills()
+                           "timestamp":self.time_mills()
                        },
                        "value":{
                            "temperature":self.temp,

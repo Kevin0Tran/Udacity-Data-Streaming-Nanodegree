@@ -4,18 +4,11 @@
   "namespace":"com.udacity",
   "fields":[
     {"name": "station_id", "type": "int"},
-    {"name": "train_id", "type": "int"},
+    {"name": "train_id", "type": "string"},
     {"name": "direction", "type": "string"},
     {"name": "train_status", "type": "string"},
     {"name":"prev_station_id", "type":["int", "null"]},
     {"name": "prev_direction", "type":["string", "null"]},
-    {
-      "name":"line",
-      "type":{
-        "name": "colors",
-        "type": "enum",
-        "symbols": ["blue", "green", "red"]
-      }
-    }
+    {"name":"line", "type":"string"}
   ]
 }
