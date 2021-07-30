@@ -9,6 +9,8 @@ from confluent_kafka.avro import AvroProducer,CachedSchemaRegistryClient
 
 logger = logging.getLogger(__name__)
 
+BROKER_URL = "PLAINTEXT://localhost:9092"
+SCHEMA_REGISTRY_URL = "http://localhost:8081"
 
 class Producer:
     """Defines and provides common functionality amongst Producers"""
@@ -38,8 +40,8 @@ class Producer:
         #
         #
         self.broker_properties = {
-            "bootstrap.server":"PLAINTEXT://localhost:9092"
-        }
+            "bootstrap.servers": BROKER_URL,
+            "schema.registry.url": SCHEMA_REGISTRY_URL}
 
         # If the topic does not already exist, try to create it
         if self.topic_name not in Producer.existing_topics:
@@ -48,8 +50,9 @@ class Producer:
 
         # TODO: Configure the AvroProducer
         self.producer = AvroProducer(
-            config= self.broker_properties,
-            schema_registry= CachedSchemaRegistryClient({"url": "http://localhost:8081"})
+            self.broker_properties,
+            default_key_schema=key_schema,
+            default_value_schema=value_schema
          )
 
     def create_topic(self):
@@ -60,7 +63,9 @@ class Producer:
         # the Kafka Broker.
         #
         #
-        features = self.create_topics(
+        client =  AdminClient({"bootstrap.servers": "PLAINTEXT://localhost:9092"})
+
+        features = client.create_topics(
             [
                 NewTopic(
                     topic=self.topic_name,
@@ -75,9 +80,8 @@ class Producer:
                 print("topic created")
             except Exception as e:
                 print(f"failed to create topic {topic}: {e}")
+                logger.info("topic creation kafka integration incomplete - skipping")
                 raise
-
-        logger.info("topic creation kafka integration incomplete - skipping")
 
     def time_millis(self):
         return int(round(time.time() * 1000))

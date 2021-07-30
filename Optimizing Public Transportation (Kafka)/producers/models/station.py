@@ -37,7 +37,7 @@ class Station(Producer):
         # replicas
         #
         #
-        topic_name = f"CTA_{station_name}" # TODO: Come up with a better topic name
+        topic_name = f"Chicago.CTA.{station_name}" # TODO: Come up with a better topic name
         super().__init__(
             topic_name,
             key_schema=Station.key_schema,
@@ -68,7 +68,7 @@ class Station(Producer):
         key={"timestamp": self.time_millis()},
         value={
             "station_id":self.station_id,
-            "train_id":train.traid_id,
+            "train_id":train.train_id,
             "direction": direction,
             "line": self.color.name,
             "train_status":train.status.name,
