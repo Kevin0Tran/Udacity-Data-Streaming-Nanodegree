@@ -86,7 +86,7 @@ class Weather(Producer):
            # TODO: What URL should be POSTed to?
            #
            #
-           f"{Weather.rest_proxy_url}/topic/{self.topic_name}",
+           f"{Weather.rest_proxy_url}/topics/{self.topic_name}",
            #
            #
            # TODO: What Headers need to bet set?
