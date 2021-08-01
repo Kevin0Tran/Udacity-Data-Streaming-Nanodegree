@@ -57,7 +57,7 @@ def configure_connector():
                # TODO
                "incrementing.column.name": "stop_id",
                # TODO
-               "topic.prefix": "JBDC.connector",
+               "topic.prefix": "Chicago.CTA.",
                # TODO
                "poll.interval.ms": "3600000",
            }
