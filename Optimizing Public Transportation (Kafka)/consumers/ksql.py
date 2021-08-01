@@ -32,8 +32,13 @@ CREATE TABLE turnstile (
 );
 
 CREATE TABLE turnstile_summary
-WITH (???) AS
-    ???
+WITH (VALUE_FORMAT = JSON) AS
+    SELECT station_id INT,
+    station_name VARCHAR,
+    line VARCHAR,
+    COUNT(station_id) as count
+    from turnstile
+    group by station_id;
 """
 
 
