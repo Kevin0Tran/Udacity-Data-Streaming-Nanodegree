@@ -99,7 +99,7 @@ class Weather(Producer):
                    "value_schema":json.dumps(Weather.value_schema),
                    "records":[
                        {"key":{
-                           "timestamp":self.time_mills()
+                           "timestamp":self.time_millis()
                        },
                        "value":{
                            "temperature":self.temp,
