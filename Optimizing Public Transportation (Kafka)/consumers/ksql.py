@@ -23,9 +23,12 @@ KSQL_URL = "http://localhost:8088"
 
 KSQL_STATEMENT = """
 CREATE TABLE turnstile (
-    ???
-) WITH (
-    ???
+    station_id INT,
+    station_name VARCHAR,
+    line VARCHAR
+) WITH (KAFKA_TOPIC='Chicago.CTA.turnstile',
+        VALUE_FORMAT='AVRO',
+        KEY='station_id');
 );
 
 CREATE TABLE turnstile_summary
