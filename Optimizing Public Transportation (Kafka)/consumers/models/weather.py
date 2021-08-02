@@ -15,9 +15,17 @@ class Weather:
 
     def process_message(self, message):
         """Handles incoming weather data"""
-        logger.info("weather process_message is incomplete - skipping")
+
         #
         #
         # TODO: Process incoming weather messages. Set the temperature and status.
         #
         #
+        if "weather" in message.topic():
+            weather = json.loads(message.value())
+            try:
+                self.temperature = weather["temperature"]
+                self.status = weather.get["status"]
+            except KeyError as e:
+                logger.info("weather process_message is incomplete - skipping")
+                logger.debug(f"Failed to unpack message {e}")

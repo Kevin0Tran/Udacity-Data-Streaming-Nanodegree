@@ -28,11 +28,11 @@ CREATE TABLE turnstile (
     line VARCHAR
 ) WITH (KAFKA_TOPIC='Chicago.CTA.turnstile',
         VALUE_FORMAT='AVRO',
-        KEY='station_id');
+        KEY='station_id'
 );
 
 CREATE TABLE turnstile_summary
-WITH (VALUE_FORMAT = JSON) AS
+WITH (VALUE_FORMAT = 'JSON') AS
     SELECT station_id INT,
     station_name VARCHAR,
     COUNT(station_id) as count
@@ -50,7 +50,8 @@ def execute_statement():
 
     resp = requests.post(
         f"{KSQL_URL}/ksql",
-        headers={"Content-Type": "application/vnd.ksql.v1+json"},
+        headers={"Content-Type": "application/vnd.ksql.v1+json",
+                 "Accept": "application/vnd.ksql.v1+json"},
         data=json.dumps(
             {
                 "ksql": KSQL_STATEMENT,

@@ -39,8 +39,9 @@ class KafkaConsumer:
         #
         #
         self.broker_properties = {
-                "boostrap.server":BROKER_URL,
+                "bootstrap.servers":BROKER_URL,
                 "auto.offset.reset": "earliest",
+                "group.id":"0"
         }
 
         # TODO: Create the Consumer, using the appropriate type.
@@ -48,7 +49,6 @@ class KafkaConsumer:
             self.broker_properties["schema.registry.url"] = SCHEMA_REGISTRY_URL
             self.consumer = AvroConsumer(
                 self.broker_properties,
-                schema_registry=self.broker_properties["schema.registry.url"]
             )
         else:
             self.consumer = Consumer(
