@@ -57,13 +57,14 @@ class Turnstile(Producer):
         # of entries that were calculated
         #
         #
-        self.producer.produce(
-            topic = self.topic_name,
-            key={"timestamp": self.time_millis()},
-            value ={
-                "station_id":self.station.station_id,
-                "station_name":self.station.name,
-                "line":self.station.color.name,
-            }
+        for _ in range(num_entries):
+            self.producer.produce(
+                topic = self.topic_name,
+                key={"timestamp": self.time_millis()},
+                value ={
+                    "station_id":self.station.station_id,
+                    "station_name":self.station.name,
+                    "line":self.station.color.name,
+                }
 
-        )
+            )
