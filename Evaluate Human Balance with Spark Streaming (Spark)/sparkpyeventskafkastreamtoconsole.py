@@ -10,7 +10,7 @@ spark.sparkContext.setLogLevel("WARN")
 kafa_topic_raw_DF = spark \
 .readStream \
 .format("kafka") \
-.option("kafka.bootstrap.server","localhost:9092") \
+.option("kafka.bootstrap.servers","localhost:9092") \
 .option("subscribe","stedi-events") \
 .option("startingOffsets","earliest") \
 .load()
