@@ -3,15 +3,15 @@ from pyspark.sql.functions import from_json, to_json, col, unbase64, base64, spl
 from pyspark.sql.types import StructField, StructType, StringType, BooleanType, ArrayType, DateType, FloatType
 
 # TO-DO: create a StructType for the Kafka redis-server topic which has all changes made to Redis - before Spark 3.0.0, schema inference is not automatic
-redis_server_sechma = StructType([
+redis_server_schema = StructType([
     StructField("key",StringType()),
     StructField("existType",StringType()),
-    StructField("ch",BooleanType()),
+    StructField("Ch",BooleanType()),
     StructField("Incr",StringType()),
     StructField("zSetEntries",ArrayType(
         StructType([
             StructField("element",StringType()),
-             StructField("score",StringType()),
+             StructField("Score",StringType()),
         ])
     )),
 ])
@@ -47,7 +47,7 @@ kafka_redis_server_raw_df = spark \
 .load()
 
 # TO-DO: cast the value column in the streaming dataframe as a STRING 
-kafka_redis_server_streaming_df = kafka_redis_server_raw_df.selectExpr("cast(key as string) key", "cast (value as string) string")
+kafka_redis_server_streaming_df = kafka_redis_server_raw_df.selectExpr("cast(key as string) key", "cast (value as string) value")
 # TO-DO:; parse the single column "value" with a json object in it, like this:
 # +------------+
 # | value      |
@@ -79,7 +79,7 @@ kafka_redis_server_streaming_df = kafka_redis_server_raw_df.selectExpr("cast(key
 # +------------+-----+-----------+------------+---------+-----+-----+-----------------+
 #
 # storing them in a temporary view called RedisSortedSet
-kafka_redis_server_streaming_df.withColumn("value", from_json("value",redis_server_sechma)) \
+kafka_redis_server_streaming_df.withColumn("value", from_json("value",redis_server_schema)) \
 .select(col("value.*")) \
 .createOrReplaceTempView("RedisSortedSet")
 
@@ -103,9 +103,9 @@ zSetEntriesEncoded_df = spark.sql("select key, zSetEntries[0].element as encoded
 # with this JSON format: {"customerName":"Sam Test","email":"sam.test@test.com","phone":"8015551212","birthDay":"2001-01-03"}
 zSetEntriesDecoded_df = zSetEntriesEncoded_df.withColumn("encodedCustomer", unbase64(zSetEntriesEncoded_df.encodedCustomer).cast("string"))
 # TO-DO: parse the JSON in the Customer record and store in a temporary view called CustomerRecords
-zSetEntriesDecoded_df.withColumn("cutomer",from_json("encodedCustomer",customer_schema)).select(col("customer.*")).createOrReplaceTempView("CustomerRecords")
+zSetEntriesDecoded_df.withColumn("customer",from_json("encodedCustomer",customer_schema)).select(col("customer.*")).createOrReplaceTempView("CustomerRecords")
 # TO-DO: JSON parsing will set non-existent fields to null, so let's select just the fields we want, where they are not null as a new dataframe called emailAndBirthDayStreamingDF
-emailAndBirthDayStreamingDF = spark.sql("select* from encodedCustomer where email is not NULL and birthDay is not NULL")
+emailAndBirthDayStreamingDF = spark.sql("select* from CustomerRecords where email is not NULL and birthDay is not NULL")
 # TO-DO: Split the birth year as a separate field from the birthday
 # TO-DO: Select only the birth year and email fields as a new streaming data frame called emailAndBirthYearStreamingDF
 emailAndBirthYearStreamingDF = emailAndBirthDayStreamingDF.select("email",split(emailAndBirthDayStreamingDF.birthDay,"-").getItem(0).alias("birthYear"))
