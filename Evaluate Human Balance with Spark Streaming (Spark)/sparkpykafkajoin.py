@@ -7,7 +7,7 @@ redis_server_schema = StructType([
     StructField("key",StringType()),
     StructField("existType",StringType()),
     StructField("Ch",BooleanType()),
-    StructField("Incr",StringType()),
+    StructField("Incr",BooleanType()),
     StructField("zSetEntries",ArrayType(
         StructType([
             StructField("element",StringType()),
