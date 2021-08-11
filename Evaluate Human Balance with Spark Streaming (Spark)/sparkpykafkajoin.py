@@ -11,7 +11,7 @@ redis_server_schema = StructType([
     StructField("zSetEntries",ArrayType(
         StructType([
             StructField("element",StringType()),
-             StructField("Score",StringType()),
+             StructField("score",StringType()),
         ])
     )),
 ])
@@ -85,7 +85,7 @@ kafka_redis_server_streaming_df.withColumn("value", from_json("value",redis_serv
 
 # TO-DO: execute a sql statement against a temporary view, which statement takes the element field from the 0th element in the array of structs and create a column called encodedCustomer
 # the reason we do it this way is that the syntax available select against a view is different than a dataframe, and it makes it easy to select the nth element of an array in a sql column
-zSetEntriesEncoded_df = spark.sql("select key, zSetEntries[0].element as encodedCustomer from RedisSortedSet")
+zSetEntriesEncoded_df = spark.sql("select zSetEntries[0].element as encodedCustomer from RedisSortedSet")
 # TO-DO: take the encodedCustomer column which is base64 encoded at first like this:
 # +--------------------+
 # |            customer|
