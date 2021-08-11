@@ -79,8 +79,8 @@ kafka_redis_server_streaming_df = kafka_redis_server_raw_df.selectExpr("cast(key
 # +------------+-----+-----------+------------+---------+-----+-----+-----------------+
 #
 # storing them in a temporary view called RedisSortedSet
-kafka_redis_server_streaming_df.withColumn("value", from_json("value",redis_server_schema)) \
-.select(col("value.*")) \
+kafka_redis_server_streaming_df.withColumn("data", from_json("value",redis_server_schema)) \
+.select(col("data.*")) \
 .createOrReplaceTempView("RedisSortedSet")
 
 # TO-DO: execute a sql statement against a temporary view, which statement takes the element field from the 0th element in the array of structs and create a column called encodedCustomer
