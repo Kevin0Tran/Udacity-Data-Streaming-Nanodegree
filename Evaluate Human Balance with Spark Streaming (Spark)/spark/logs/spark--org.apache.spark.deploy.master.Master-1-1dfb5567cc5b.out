@@ -1,0 +1,37 @@
+Spark Command: /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -cp /opt/spark-2.3.4-bin-hadoop2.7/conf/:/opt/spark-2.3.4-bin-hadoop2.7/jars/* -Xmx1g org.apache.spark.deploy.master.Master --host 1dfb5567cc5b --port 7077 --webui-port 8080
+========================================
+2021-08-09 23:13:36 INFO  Master:2612 - Started daemon with process name: 1589@1dfb5567cc5b
+2021-08-09 23:13:37 INFO  SignalUtils:54 - Registered signal handler for TERM
+2021-08-09 23:13:37 INFO  SignalUtils:54 - Registered signal handler for HUP
+2021-08-09 23:13:37 INFO  SignalUtils:54 - Registered signal handler for INT
+2021-08-09 23:13:38 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2021-08-09 23:13:39 INFO  SecurityManager:54 - Changing view acls to: root
+2021-08-09 23:13:39 INFO  SecurityManager:54 - Changing modify acls to: root
+2021-08-09 23:13:39 INFO  SecurityManager:54 - Changing view acls groups to: 
+2021-08-09 23:13:39 INFO  SecurityManager:54 - Changing modify acls groups to: 
+2021-08-09 23:13:39 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2021-08-09 23:13:40 INFO  Utils:54 - Successfully started service 'sparkMaster' on port 7077.
+2021-08-09 23:13:40 INFO  Master:54 - Starting Spark master at spark://1dfb5567cc5b:7077
+2021-08-09 23:13:40 INFO  Master:54 - Running Spark version 2.3.4
+2021-08-09 23:13:41 INFO  log:192 - Logging initialized @6632ms
+2021-08-09 23:13:41 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2021-08-09 23:13:41 INFO  Server:419 - Started @6957ms
+2021-08-09 23:13:41 INFO  AbstractConnector:278 - Started ServerConnector@284e8635{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+2021-08-09 23:13:41 INFO  Utils:54 - Successfully started service 'MasterUI' on port 8080.
+2021-08-09 23:13:41 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@56637342{/app,null,AVAILABLE,@Spark}
+2021-08-09 23:13:41 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@540348ab{/app/json,null,AVAILABLE,@Spark}
+2021-08-09 23:13:41 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@7a8ae74e{/,null,AVAILABLE,@Spark}
+2021-08-09 23:13:41 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4957232b{/json,null,AVAILABLE,@Spark}
+2021-08-09 23:13:41 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@75f7cba{/static,null,AVAILABLE,@Spark}
+2021-08-09 23:13:41 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@71cac99f{/app/kill,null,AVAILABLE,@Spark}
+2021-08-09 23:13:41 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6b47b352{/driver/kill,null,AVAILABLE,@Spark}
+2021-08-09 23:13:41 INFO  MasterWebUI:54 - Bound MasterWebUI to 0.0.0.0, and started at http://1dfb5567cc5b:8080
+2021-08-09 23:13:41 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2021-08-09 23:13:41 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6d75027c{/,null,AVAILABLE}
+2021-08-09 23:13:41 INFO  AbstractConnector:278 - Started ServerConnector@4fe3f47d{HTTP/1.1,[http/1.1]}{1dfb5567cc5b:6066}
+2021-08-09 23:13:41 INFO  Server:419 - Started @7517ms
+2021-08-09 23:13:41 INFO  Utils:54 - Successfully started service on port 6066.
+2021-08-09 23:13:41 INFO  StandaloneRestServer:54 - Started REST server for submitting applications on port 6066
+2021-08-09 23:13:42 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2d7ec1d4{/metrics/master/json,null,AVAILABLE,@Spark}
+2021-08-09 23:13:42 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5a6dfd31{/metrics/applications/json,null,AVAILABLE,@Spark}
+2021-08-09 23:13:42 INFO  Master:54 - I have been elected leader! New state: ALIVE

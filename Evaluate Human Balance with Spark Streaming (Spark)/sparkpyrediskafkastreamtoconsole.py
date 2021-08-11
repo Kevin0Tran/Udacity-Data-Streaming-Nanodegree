@@ -48,7 +48,7 @@ kafka_redis_server_raw_df = spark \
 .option("startingOffsets", "earliest") \
 .load()
 
-# TO-DO: cast the value column in the streaming dataframe as a STRING 
+# TO-DO: cast the value column in the streaming dataframe as a STRING
 kafka_redis_server_stream_df =kafka_redis_server_raw_df.selectExpr("cast(key as string) key", "cast (value as string) value")
 
 # TO-DO:; parse the single column "value" with a json object in it, like this:

@@ -1,0 +1,38 @@
+Spark Command: /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -cp /opt/spark-2.3.4-bin-hadoop2.7/conf/:/opt/spark-2.3.4-bin-hadoop2.7/jars/* -Xmx1g org.apache.spark.deploy.master.Master --host d1c1e4b21f4e --port 7077 --webui-port 8080
+========================================
+2021-08-10 21:56:09 INFO  Master:2612 - Started daemon with process name: 1527@d1c1e4b21f4e
+2021-08-10 21:56:10 INFO  SignalUtils:54 - Registered signal handler for TERM
+2021-08-10 21:56:10 INFO  SignalUtils:54 - Registered signal handler for HUP
+2021-08-10 21:56:10 INFO  SignalUtils:54 - Registered signal handler for INT
+2021-08-10 21:56:21 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2021-08-10 21:56:23 INFO  SecurityManager:54 - Changing view acls to: root
+2021-08-10 21:56:23 INFO  SecurityManager:54 - Changing modify acls to: root
+2021-08-10 21:56:23 INFO  SecurityManager:54 - Changing view acls groups to: 
+2021-08-10 21:56:23 INFO  SecurityManager:54 - Changing modify acls groups to: 
+2021-08-10 21:56:23 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+2021-08-10 21:56:29 INFO  Utils:54 - Successfully started service 'sparkMaster' on port 7077.
+2021-08-10 21:56:31 INFO  Master:54 - Starting Spark master at spark://d1c1e4b21f4e:7077
+2021-08-10 21:56:32 INFO  Master:54 - Running Spark version 2.3.4
+2021-08-10 21:56:33 INFO  log:192 - Logging initialized @41024ms
+2021-08-10 21:56:34 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2021-08-10 21:56:34 INFO  Server:419 - Started @42389ms
+2021-08-10 21:56:35 INFO  AbstractConnector:278 - Started ServerConnector@7f346018{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+2021-08-10 21:56:35 INFO  Utils:54 - Successfully started service 'MasterUI' on port 8080.
+2021-08-10 21:56:35 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@399d287e{/app,null,AVAILABLE,@Spark}
+2021-08-10 21:56:35 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@41a9c27e{/app/json,null,AVAILABLE,@Spark}
+2021-08-10 21:56:35 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@257a3eb4{/,null,AVAILABLE,@Spark}
+2021-08-10 21:56:35 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@69b63104{/json,null,AVAILABLE,@Spark}
+2021-08-10 21:56:35 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6603b47e{/static,null,AVAILABLE,@Spark}
+2021-08-10 21:56:35 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@748fb9f5{/app/kill,null,AVAILABLE,@Spark}
+2021-08-10 21:56:35 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@b31fb90{/driver/kill,null,AVAILABLE,@Spark}
+2021-08-10 21:56:35 INFO  MasterWebUI:54 - Bound MasterWebUI to 0.0.0.0, and started at http://d1c1e4b21f4e:8080
+2021-08-10 21:56:35 INFO  Server:351 - jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+2021-08-10 21:56:35 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@545221c5{/,null,AVAILABLE}
+2021-08-10 21:56:35 INFO  AbstractConnector:278 - Started ServerConnector@4fe62c6a{HTTP/1.1,[http/1.1]}{d1c1e4b21f4e:6066}
+2021-08-10 21:56:35 INFO  Server:419 - Started @43621ms
+2021-08-10 21:56:35 INFO  Utils:54 - Successfully started service on port 6066.
+2021-08-10 21:56:35 INFO  StandaloneRestServer:54 - Started REST server for submitting applications on port 6066
+2021-08-10 21:56:37 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2d388e70{/metrics/master/json,null,AVAILABLE,@Spark}
+2021-08-10 21:56:37 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@2b1caed2{/metrics/applications/json,null,AVAILABLE,@Spark}
+2021-08-10 21:56:37 INFO  Master:54 - I have been elected leader! New state: ALIVE
+2021-08-10 21:57:03 INFO  Master:54 - Registering worker 172.18.0.2:45533 with 2 cores, 6.3 GB RAM
