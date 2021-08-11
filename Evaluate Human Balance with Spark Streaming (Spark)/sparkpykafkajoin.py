@@ -4,17 +4,20 @@ from pyspark.sql.types import StructField, StructType, StringType, BooleanType, 
 
 # TO-DO: create a StructType for the Kafka redis-server topic which has all changes made to Redis - before Spark 3.0.0, schema inference is not automatic
 redis_server_schema = StructType([
-    StructField("key",StringType()),
-    StructField("existType",StringType()),
-    StructField("Ch",BooleanType()),
-    StructField("Incr",BooleanType()),
+    StructField("key", StringType()),
+    StructField("value",StringType()),
+    StructField("expiredType",StringType()),
+    StructField("expiredValue",StringType()),
+    StructField("ch",BooleanType()),
+    StructField("incr",BooleanType()),
     StructField("zSetEntries",ArrayType(
         StructType([
-            StructField("element",StringType()),
-             StructField("score",StringType()),
+            StructField("element", StringType()),
+            StructField("score", FloatType()),
         ])
     )),
 ])
+
 # TO-DO: create a StructType for the Customer JSON that comes from Redis- before Spark 3.0.0, schema inference is not automatic
 customer_schema = StructType([
     StructField("customerName",StringType()),
@@ -136,7 +139,7 @@ kafka_stedi_event_streaming_df = kafka_stedi_event_raw_df.selectExpr("cast (key 
 # +------------+-----+-----------+
 #
 # storing them in a temporary view called CustomerRisk
-kafka_stedi_event_streaming_df.withColumn("value", from_json("value",customer_schema)) \
+kafka_stedi_event_streaming_df.withColumn("value", from_json("value",customer_risk_schema)) \
 .select(col("value.*")) \
 .createOrReplaceTempView("CustomerRisk")
 # TO-DO: execute a sql statement against a temporary view, selecting the customer and the score from the temporary view, creating a dataframe called customerRiskStreamingDF

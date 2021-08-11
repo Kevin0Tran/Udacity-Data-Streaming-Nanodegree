@@ -5,9 +5,11 @@ from pyspark.sql.types import StructField, StructType, StringType, BooleanType, 
 # TO-DO: create a StructType for the Kafka redis-server topic which has all changes made to Redis - before Spark 3.0.0, schema inference is not automatic
 redis_server_schema = StructType([
     StructField("key", StringType()),
-    StructField("existType",BooleanType()),
-    StructField("Ch",BooleanType()),
-    StructField("Incr",StringType()),
+    StructField("value",StringType()),
+    StructField("expiredType",StringType()),
+    StructField("expiredValue",StringType()),
+    StructField("ch",BooleanType()),
+    StructField("incr",BooleanType()),
     StructField("zSetEntries",ArrayType(
         StructType([
             StructField("element", StringType()),
